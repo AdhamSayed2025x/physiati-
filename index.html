@@ -1,316 +1,244 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhysicaNexus | Discover the Universe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PhysicaNexus — Hero</title>
 
-    <style>
-        /* --- إعدادات عامة --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Rajdhani', sans-serif; /* خط تقني وعصري */
-        }
+<!-- Cairo font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-        body {
-            background-color: #020617; /* لون خلفية داكن جداً */
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            /* صورة خلفية تقريبية للكون والذرات */
-            background-image: url('https://img.freepik.com/free-photo/abstract-background-with-magnetic-particles_23-2150283337.jpg?t=st=1715505885~exp=1715509485~hmac=e0a2c566843317284776304666006c6190601010c92585123188622306542026&w=1380');
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay;
-            position: relative;
-        }
+<style>
+  :root{
+    --accent: #35b0ff;
+    --neon: rgba(60,180,255,0.14);
+    --glass: rgba(10,18,26,0.55);
+    --text-large: 64px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:'Cairo',sans-serif;background:#000;direction:rtl;color:#fff}
 
-        /* طبقة تغميق إضافية فوق الخلفية لزيادة تباين النصوص */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(2, 6, 23, 0.85);
-            z-index: -1;
-        }
+  /* page background: dark space + subtle particles (use your bg image) */
+  body{
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(50,120,255,0.07) 0%, transparent 25%),
+      radial-gradient(ellipse at 80% 80%, rgba(255,100,150,0.04) 0%, transparent 18%),
+      url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?auto=format&fit=crop&w=2000&q=60');
+    background-size: cover;
+    background-position: center;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
 
-        /* --- Header Styles --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: rgba(2, 6, 23, 0.6);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(64, 196, 255, 0.1);
-        }
+  /* translucent bordered header */
+  .topbar{
+    max-width:1200px;margin:28px auto 0;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-radius:12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(120,180,255,0.08);
+    box-shadow: 0 6px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    backdrop-filter: blur(6px);
+  }
 
-        .logo {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #40c4ff;
-            text-shadow: 0 0 15px rgba(64, 196, 255, 0.6);
-            letter-spacing: 1px;
-        }
+  .logo{
+    display:flex;align-items:center;gap:12px;color:var(--accent);font-weight:800;font-size:20px;text-shadow:0 2px 12px rgba(52,170,255,0.12);
+  }
+  .logo .icon{
+    width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#1b3b5d,#003b63);display:flex;align-items:center;justify-content:center;
+    box-shadow: 0 4px 18px rgba(53,176,255,0.12);
+    font-weight:700;color:#cfefff;
+  }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+  .nav{
+    display:flex;gap:20px;align-items:center;color:#cfe6ff;font-weight:600;
+  }
+  .nav a{color:inherit;text-decoration:none;opacity:0.9}
+  .nav a:hover{opacity:1;text-decoration:underline}
 
-        .nav-menu li a {
-            text-decoration: none;
-            color: #e2e8f0;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
+  .login-btn{
+    padding:8px 14px;border-radius:10px;border:1px solid rgba(60,180,255,0.2);
+    background: linear-gradient(180deg, rgba(53,176,255,0.06), rgba(53,176,255,0.02));
+    color:var(--accent);font-weight:700;cursor:pointer;
+    box-shadow: 0 6px 18px rgba(14,40,60,0.45), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
 
-        .nav-menu li a:hover {
-            color: #40c4ff;
-        }
+  /* hero area */
+  .hero-wrap{
+    max-width:1200px;margin:28px auto 56px;padding:36px;border-radius:14px;position:relative;
+    display:grid;grid-template-columns: 1fr 420px;align-items:center;gap:28px;
+    background: linear-gradient(180deg, rgba(10,18,26,0.38), rgba(6,10,16,0.35));
+    border: 1px solid rgba(120,180,255,0.04);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+    overflow:visible;
+  }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
+  /* left text block */
+  .hero-text{
+    padding:18px 6px;
+  }
+  .hero-text h1{
+    margin:0 0 14px 0;font-size:clamp(32px, 6.4vw, var(--text-large));line-height:0.98;
+    font-weight:900;color:#ffffff;text-shadow:
+      0 2px 0 rgba(0,0,0,0.6),
+      0 8px 30px rgba(53,176,255,0.06);
+    letter-spacing:-0.6px;
+  }
+  .hero-text p.lead{
+    margin:0 0 16px 0;color:rgba(255,255,255,0.92);font-weight:600;font-size:16px;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.6);
+  }
+  .hero-text p.desc{
+    color:rgba(200,220,240,0.7);font-size:14px;line-height:1.6;max-width:720px;
+    margin: 10px 0 0;
+  }
 
-        .login-btn {
-            text-decoration: none;
-            color: #40c4ff;
-            padding: 10px 30px;
-            border: 2px solid #40c4ff;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(64, 196, 255, 0.2);
-        }
+  /* neon atom & faint decorative svg behind text */
+  .bg-decor{
+    position:absolute;left:40px;top:40px;opacity:0.06;filter:blur(6px);pointer-events:none;
+    width:420px;height:420px;background-image:
+      radial-gradient(circle at 30% 30%, rgba(80,200,255,0.06) 0%, transparent 18%),
+      radial-gradient(circle at 70% 70%, rgba(255,160,200,0.03) 0%, transparent 16%);
+    border-radius:50%;
+    mix-blend-mode:screen;
+  }
 
-        .login-btn:hover {
-            background: #40c4ff;
-            color: #020617;
-            box-shadow: 0 0 20px rgba(64, 196, 255, 0.5);
-        }
+  /* right image card */
+  .card{
+    width:100%;max-width:420px;height:300px;border-radius:12px;overflow:hidden;position:relative;
+    background: linear-gradient(180deg, rgba(10,14,20,0.45), rgba(5,8,12,0.55));
+    border:1px solid rgba(80,160,255,0.12);box-shadow: 0 12px 40px rgba(20,30,40,0.6);
+    display:flex;align-items:center;justify-content:center;padding:12px;
+  }
 
-        /* أيقونة الوضع النهاري/الليلي المدمجة */
-        .theme-toggle {
-            position: relative;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
+  .card .frame{
+    width:100%;height:100%;border-radius:10px;overflow:hidden;position:relative;
+    box-shadow: 0 0 40px rgba(60,180,255,0.06), 0 8px 40px rgba(0,0,0,0.6) inset;
+    border: 1px solid rgba(60,180,255,0.08);
+    background: radial-gradient(ellipse at 30% 20%, rgba(53,176,255,0.06), transparent 10%);
+  }
+  .card img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transform: translateZ(0);
+  }
 
-        .theme-toggle .fa-sun {
-            color: #fbbf24; /* لون الشمس */
-            font-size: 1.4rem;
-            z-index: 2;
-        }
+  /* glow outline around card */
+  .card::after{
+    content:"";position:absolute;inset:0;border-radius:12px;
+    box-shadow:0 0 40px rgba(60,170,255,0.24), 0 0 120px rgba(60,170,255,0.06);
+    pointer-events:none;mix-blend-mode:screen;
+  }
 
-        .theme-toggle .atom-icon {
-            position: absolute;
-            font-size: 2rem;
-            color: rgba(64, 196, 255, 0.7);
-            z-index: 1;
-            animation: spin-slow 20s linear infinite;
-        }
+  /* footer small bar */
+  .hero-footer{
+    margin-top:18px;display:flex;align-items:center;justify-content:space-between;color:rgba(200,220,240,0.7);
+    font-size:13px;padding:8px 6px 0 6px;
+  }
+  .socials{display:flex;gap:10px;align-items:center}
+  .socials .dot{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
 
-        /* --- Main Content Styles --- */
-        main {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 60px 5%;
-            gap: 50px;
-        }
+  /* small developer credit on right bottom */
+  .dev{opacity:0.76;font-size:13px}
 
-        .content-left {
-            flex: 1;
-            max-width: 600px;
-        }
-
-        .main-title {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 30px;
-            /* تأثير تدرج لوني للنص */
-            background: linear-gradient(to right, #ffffff, #40c4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(64, 196, 255, 0.4));
-        }
-
-        .main-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #94a3b8;
-            max-width: 550px;
-        }
-
-        .content-right {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .image-container {
-            position: relative;
-            padding: 10px;
-            /* الإطار المضيء حول الصورة */
-            border: 3px solid #40c4ff;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(64, 196, 255, 0.4), inset 0 0 20px rgba(64, 196, 255, 0.2);
-            background: rgba(2, 6, 23, 0.5);
-        }
-
-        .main-image {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            border-radius: 15px;
-            display: block;
-            /* صورة تقريبية لأينشتاين والكون */
-            content: url('https://img.freepik.com/free-photo/portrait-man-with-glasses-hightech-futuristic-concept_23-2151133319.jpg?t=st=1715507131~exp=1715510731~hmac=71a1718171919798808085780157127890527171818108716556c75c9565c987&w=740');
-        }
-
-        /* --- Footer Styles --- */
-        footer {
-            background: rgba(2, 6, 23, 0.9);
-            padding: 25px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(64, 196, 255, 0.1);
-            font-size: 0.95rem;
-            color: #94a3b8;
-        }
-
-        .footer-center {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            color: #fff;
-            transition: transform 0.3s ease;
-            text-decoration: none;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-3px);
-        }
-
-        /* ألوان خلفيات أيقونات التواصل */
-        .fb { background-color: #1877f2; box-shadow: 0 0 10px rgba(24, 119, 242, 0.5); }
-        .wa { background-color: #25d366; box-shadow: 0 0 10px rgba(37, 211, 102, 0.5); }
-        .ph { background-color: #e2e8f0; color: #020617; box-shadow: 0 0 10px rgba(226, 232, 240, 0.5); }
-
-        .developer span {
-            color: #40c4ff;
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(64, 196, 255, 0.5);
-        }
-
-        /* --- حركات (Animations) --- */
-        @keyframes spin-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* --- التجاوب (Responsive Design) --- */
-        @media (max-width: 992px) {
-            main {
-                flex-direction: column;
-                text-align: center;
-                gap: 30px;
-            }
-            .content-left, .main-text { max-width: 100%; }
-            .main-title { font-size: 3rem; }
-            .nav-menu { display: none; /* إخفاء القائمة في الشاشات الصغيرة للتبسيط */ }
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 20px; }
-            .logo { font-size: 1.8rem; }
-            .login-btn { padding: 8px 20px; }
-            footer { flex-direction: column; gap: 20px; text-align: center; }
-        }
-    </style>
+  /* responsive: on small screens stack */
+  @media (max-width:980px){
+    .hero-wrap{grid-template-columns:1fr;gap:14px;padding:22px}
+    .card{height:260px;order:2}
+    .bg-decor{display:none}
+    .topbar{margin:16px}
+  }
+  @media (max-width:520px){
+    .hero-text h1{font-size:32px}
+    .card{height:220px}
+    .nav{display:none}
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">PhysicaNexus</div>
-        
-        <ul class="nav-menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Lectures</a></li>
-            <li><a href="#">Sections</a></li>
-            <li><a href="#">Research</a></li>
-            <li><a href="#">Projects</a></li>
-        </ul>
-
-        <div class="header-right">
-            <a href="#" class="login-btn">Login</a>
-            <div class="theme-toggle">
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-atom atom-icon"></i>
-            </div>
+  <!-- Top bar -->
+  <header class="topbar" role="banner">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="logo">
+        <div class="icon">PN</div>
+        <div>
+          <div style="font-size:18px">Physica<span style="color:rgba(255,255,255,0.18)">Nexus</span></div>
+          <div style="font-size:11px;color:rgba(200,230,255,0.25);font-weight:600;margin-top:2px">Physics Community</div>
         </div>
-    </header>
+      </div>
+    </div>
 
-    <main>
-        <div class="content-left">
-            <h1 class="main-title">To solve the mystery of the universe, you must discover physics.</h1>
-            <p class="main-text">
-                Physics is the natural science that studies matter, its fundamental constituents, its motion and behavior through space and time, and the related entities of energy and force. Physics is one of the most fundamental scientific disciplines, and its main goal is to understand how the universe behaves.
-            </p>
-        </div>
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="#">Home</a>
+      <a href="#">Lectures</a>
+      <a href="#">Sections</a>
+      <a href="#">Research</a>
+      <a href="#">Projects</a>
+      <button class="login-btn" onclick="alert('Login clicked')">Login</button>
+    </nav>
+  </header>
 
-        <div class="content-right">
-            <div class="image-container">
-                <img class="main-image" alt="Einstein and the Universe visualization">
-            </div>
-        </div>
-    </main>
+  <!-- Hero -->
+  <main class="hero-wrap" role="main" aria-labelledby="hero-title">
+    <div class="bg-decor" aria-hidden="true"></div>
 
-    <footer>
-        <div class="copyright">
-            &copy; Vision Company. All rights reserved.
-        </div>
+    <section class="hero-text">
+      <h1 id="hero-title">
+        To solve the mystery<br/>of the universe, you<br/>must discover physics.
+      </h1>
 
-        <div class="footer-center">
-            <a href="#" class="social-icon fb"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon wa"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" class="social-icon ph"><i class="fas fa-phone"></i></a>
+      <p class="lead">Science و curiosity هما محركا الفهم. نضم علماء وطلاب و passionate learners.</p>
+
+      <p class="desc">
+        Physics is a English from a past and chemistrying physical community for
+        materials physics. It is the mystery of cheering vistas, homemaking temperature,
+        and reconstrouser phenomenon. Discover deep concepts, equations and cosmic visuals.
+      </p>
+
+      <div class="hero-footer" style="margin-top:24px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="font-weight:700">© Vision Company. All rights reserved.</div>
         </div>
 
-        <div class="developer">
-            Developer by <span>BIMBO</span>
+        <div style="display:flex;gap:12px;align-items:center">
+          <div class="socials" aria-hidden="true">
+            <div class="dot">f</div>
+            <div class="dot">w</div>
+            <div class="dot">☎</div>
+          </div>
+          <div class="dev">Developer by BIMBO</div>
         </div>
-    </footer>
+      </div>
+    </section>
+
+    <aside class="card" aria-hidden="false">
+      <div class="frame">
+        <!-- استبدل src بصورة الفضاء/العلم أو بورتريه أينشتاين حسب الصورة الأصلية -->
+        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1000&q=80" alt="Cosmic illustration">
+      </div>
+    </aside>
+  </main>
+
+<script>
+  // small JS to add parallax-like movement on mouse (gives dynamic feel like picture)
+  (function(){
+    const frame = document.querySelector('.card .frame');
+    const hero = document.querySelector('.hero-wrap');
+    if(!frame || !hero) return;
+
+    hero.addEventListener('mousemove', e=>{
+      const r = hero.getBoundingClientRect();
+      const cx = r.left + r.width/2;
+      const cy = r.top + r.height/2;
+      const dx = (e.clientX - cx)/(r.width/2);
+      const dy = (e.clientY - cy)/(r.height/2);
+      frame.style.transform = `translate3d(${dx*6}px, ${dy*6}px, 0) scale(1.01)`;
+      frame.style.transition = 'transform 0.08s linear';
+    });
+    hero.addEventListener('mouseleave', ()=>{
+      frame.style.transform = '';
+      frame.style.transition = 'transform 0.28s cubic-bezier(.2,.8,.2,1)';
+    });
+  })();
+</script>
 
 </body>
 </html>
